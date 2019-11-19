@@ -10,7 +10,7 @@
     "build:export": "npm run build && npm run export",
     "export": "next export && cp -R static/* out/",
     "deploy": "npm run build:content && npm run build:export && mv out public",
-    "server": "NODE_ENV=production node server.js",
+    "server": "cross-env NODE_ENV=production node server.js",
     "v-patch": "npm version patch && git push --tags && npm publish && git push",
     "v-minor": "npm version minor && git push --tags && npm publish && git push",
     "v-major": "npm version major && git push --tags && npm publish && git push",
@@ -26,6 +26,7 @@
   "author": "jackieli",
   "license": "MIT",
   "dependencies": {
+    "cross-env": "^6.0.3",
     "next": "^9.1.1",
     "pm2": "^4.1.2",
     "processmd": "^4.5.0",
