@@ -1,0 +1,37 @@
+{
+  "name": "next-blog",
+  "version": "3.2.0",
+  "description": "Markdown based blog using next.js powered by jackieli",
+  "scripts": {
+    "start": "node server.js",
+    "build": "next build",
+    "build:content": "processmd content/**/*.md --outputDir content --preview 110 --summaryOutput content/summary.json",
+    "build:content:watch": "processmd content/**/*.md --outputDir content --preview 110 --summaryOutput content/summary.json --watch",
+    "build:export": "npm run build && npm run export",
+    "export": "next export && cp -R static/* out/",
+    "deploy": "npm run build:content && npm run build:export && mv out public",
+    "server": "NODE_ENV=production node server.js",
+    "v-patch": "npm version patch && git push --tags && npm publish && git push",
+    "v-minor": "npm version minor && git push --tags && npm publish && git push",
+    "v-major": "npm version major && git push --tags && npm publish && git push",
+    "start:prod": "pm2-docker start ./ecosystem.json",
+    "start-runtime:prod": "pm2-runtime start ecosystem.config.js --env production"
+  },
+  "keywords": [
+    "blog",
+    "next.js",
+    "next",
+    "jackieli"
+  ],
+  "author": "jackieli",
+  "license": "MIT",
+  "dependencies": {
+    "next": "^9.1.1",
+    "pm2": "^4.1.2",
+    "processmd": "^4.5.0",
+    "react": "^16.10.2",
+    "react-dom": "^16.10.2",
+    "standard": "^14.3.1",
+    "styled-jsx": "^3.2.2"
+  }
+}
